@@ -1,0 +1,19 @@
+.container {
+    height: 500px;
+    width: 200px;
+    border-radius: 5px;
+    background-color: whitesmoke;
+}
+
+.listContainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    height: fit-content;
+    padding: 0.25rem 0 2rem;
+    overflow-x: scroll;
+}
+
+::-webkit-scrollbar {
+    width: 0;
+}

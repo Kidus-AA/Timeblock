@@ -1,0 +1,15 @@
+.container {
+    min-width: 300px;
+    height: 15rem;
+    flex: 1 0 auto;
+}
+
+.line {
+    margin-top: 2.2rem;
+}
+
+@media screen and (max-width: 360px) {
+    .container {
+        min-width: 0;
+    }
+}
