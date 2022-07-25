@@ -1,22 +1,34 @@
 import styles from './Home.modules.css'
+import { useState, useEffect } from 'react'
 import { Container, Row, Col } from 'react-bootstrap'
-import TodoCard from '../../components/TodoCard'
 import CardCreator from '../../components/CardCreator'
 import Prioritize from '../../components/Prioritize/Prioritize'
+import { TaskList } from '../../context'
 
 const Home = () => {
+    const [ tasks, setTasks ] = useState(['test1', 'test2', 'test2','test2','test2','test2','test2','test2','test2','test2','test2','test2','test2','test2','test2'])
+    const [ deletedTasks, setDeletedTasks ] = useState([])
+    const [ highPriority, setHighPriority ] = useState([])
+    const [ lowPriority, setLowPriority ] = useState([])
+
+
+    useEffect(() => {
+        console.log(deletedTasks)
+    }, [deletedTasks])
+
     return (
-        <Container>
-            <Row className={styles.row}>
-                <Col md={6}>
-                    HELLO THERE
-                </Col>
-                <Col>
-                    <Prioritize />
-                    <CardCreator />
-                </Col>
-            </Row>
-        </Container>
+        <TaskList.Provider value={{tasks, setTasks, deletedTasks, setDeletedTasks, highPriority, setHighPriority, lowPriority, setLowPriority}}>
+            <Container>
+                <Row className={styles.row}>
+                    <Col md={6}>
+                        <CardCreator/>
+                    </Col>
+                    <Col>
+                        <Prioritize highPriority={highPriority} lowPriority={lowPriority}/>
+                    </Col>
+                </Row>
+            </Container>
+        </TaskList.Provider>
     )
 }
 

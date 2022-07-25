@@ -1,13 +1,18 @@
 .container {
     display: flex;
     flex-direction: row;
+    width: fit-content;
+    max-width: 530px;
     position: relative;
+    word-break: break-all;
+    hyphens: manual;
     padding: 0.6rem 1.2rem 0.3rem 0.8rem;
     margin: 0.25rem;
     border-radius: 0.25rem;
-    max-width: fit-content;
     background-color: khaki;
     user-select: none;
+    z-index: 2;
+    overflow: visible;
 }
 
 .delete {

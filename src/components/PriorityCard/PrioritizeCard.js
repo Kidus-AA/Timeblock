@@ -2,21 +2,23 @@ import styles from './PrioritizeCard.module.css'
 import { Card } from 'react-bootstrap'
 import TodoCard from '../TodoCard'
 
-const Prioritize = (props) => {
+const PrioritizeCard = (props) => {
+    const getTasks = () => {
+        return props.tasks.map((task, key) => <TodoCard key={key} todo={task}/>)
+    }
+
     return (
         <>
             <Card className={styles.container} style={{ background: props.background }}>
                 <Card.Body>
                     <Card.Title>{props.priority} Priority</Card.Title>
-                    <hr />
-                    <hr className={styles.line}/>
-                    <hr className={styles.line}/>
-                    <hr className={styles.line}/>
-                    <hr className={styles.line}/>
+                    <div className={styles.listContainer}>
+                        { getTasks() }
+                    </div>
                 </Card.Body>
             </Card>
         </>
     )
 }
 
-export default Prioritize
+export default PrioritizeCard

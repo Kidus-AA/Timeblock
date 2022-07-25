@@ -11,7 +11,7 @@
     flex-wrap: wrap;
     height: fit-content;
     padding: 0.25rem 0 2rem;
-    overflow-x: scroll;
+    overflow-x: visible;
 }
 
 ::-webkit-scrollbar {
