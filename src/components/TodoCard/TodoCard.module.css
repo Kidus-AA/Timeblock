@@ -23,6 +23,10 @@
     transition: opacity 0.5s;
 }
 
+.test {
+    -webkit-user-drag: none;
+}
+
 .delete:hover {
     cursor: pointer;
 }

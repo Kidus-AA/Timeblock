@@ -14,7 +14,49 @@ const TodoCard = (props) => {
     const container = useContext(TaskListContainer)
     const { highPriority, setHighPriority, lowPriority, setLowPriority } = useContext(TaskList)
 
-    const handleClick = () => {
+    const handleStop = (e) => {
+        if(e.target instanceof HTMLImageElement) {
+            handleDelete()
+        } else if(e.target instanceof HTMLInputElement) {} 
+          else {
+            const windowWidth = window.innerWidth
+
+            const highPriorityBox = document.getElementById("highBox").getBoundingClientRect()
+            const containerBox = container.current.getBoundingClientRect()
+
+            if(windowWidth > 767) {
+                if((e.clientX / windowWidth) > 0.5) {
+                    if(e.clientY > highPriorityBox.bottom) {
+                        setLowPriority([...lowPriority, todoBox.current.innerText]) 
+                    } else {
+                        setHighPriority([...highPriority, todoBox.current.innerText]) 
+                    } 
+                    container.current.removeChild(taskContain.current)
+                } else {
+                    container.current.removeChild(taskContain.current)
+                    container.current.appendChild(taskContain.current)
+                }
+            } else {
+                if(e.clientY > containerBox.bottom) {
+                    if(e.clientY > highPriorityBox.bottom) {
+                        setLowPriority([...lowPriority, todoBox.current.innerText]) 
+                    } else {
+                        setHighPriority([...highPriority, todoBox.current.innerText]) 
+                    } 
+                    container.current.removeChild(taskContain.current)
+                } else {
+                    container.current.removeChild(taskContain.current)
+                    container.current.appendChild(taskContain.current)
+                }
+            }
+        }
+    }
+
+    const handleDelete = () => {
+        props.deleteTask(todoBox.current.innerText)
+    }
+
+    const handleClick = (e) => {
         const checked = boxChecked.current.style.textDecoration;
         if(!checked) {
             boxChecked.current.style.textDecoration = "line-through";
@@ -25,37 +67,18 @@ const TodoCard = (props) => {
         }
     }
 
-    const handleStop = (e) => {
-        if(e.target instanceof HTMLImageElement) {
-            handleDelete()
-        } else {
-
-            console.log(e.clientX + " " + e.clientY)    // HINT: we can get the size of the window
-            setHighPriority([...highPriority, todoBox.current.innerText])   
-            // TODO: can set where it was placed here
-            // TODO: Get the window size when it resizes
-
-            container.current.removeChild(taskContain.current)
-            todoBox.current.style.transform = ""
-        }
-    }
-
-    const handleDelete = () => {
-        props.deleteTask(todoBox.current.innerText)
-        taskContain.current.removeChild(todoBox.current)
-    }
-
     return (
         <div ref={taskContain}>
             <Draggable
                 nodeRef={todoBox}
                 onStop={e => handleStop(e)}
+                position={{x: 0, y: 0}}
             >
                     <div className={styles.container} ref={todoBox}>
                         <Form.Check type="checkbox" ref={check} onClick={handleClick}/>
                         <div ref={boxChecked} className={styles.todo}><h5>{props.todo}</h5></div>
                         <div className={styles.delete}>
-                            <img src={closePNG} alt="Delete todo" width="20px" onClick={handleStop}></img>
+                            <img className={styles.test} src={closePNG} alt="Delete todo" width="20px"></img>
                         </div>
                     </div>
             </Draggable>

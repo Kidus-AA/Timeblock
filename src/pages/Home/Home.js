@@ -6,18 +6,17 @@ import Prioritize from '../../components/Prioritize/Prioritize'
 import { TaskList } from '../../context'
 
 const Home = () => {
-    const [ tasks, setTasks ] = useState(['test1', 'test2', 'test2','test2','test2','test2','test2','test2','test2','test2','test2','test2','test2','test2','test2'])
+    const [ tasks, setTasks ] = useState(['test1', 'test2', 'working', 'internship', 'applications'])
     const [ deletedTasks, setDeletedTasks ] = useState([])
     const [ highPriority, setHighPriority ] = useState([])
     const [ lowPriority, setLowPriority ] = useState([])
 
-
     useEffect(() => {
-        console.log(deletedTasks)
+        setTasks(tasks.filter(task => !deletedTasks.includes(task)))
     }, [deletedTasks])
 
     return (
-        <TaskList.Provider value={{tasks, setTasks, deletedTasks, setDeletedTasks, highPriority, setHighPriority, lowPriority, setLowPriority}}>
+        <TaskList.Provider value={{ tasks, setTasks, deletedTasks, setDeletedTasks, highPriority, setHighPriority, lowPriority, setLowPriority }}>
             <Container>
                 <Row className={styles.row}>
                     <Col md={6}>

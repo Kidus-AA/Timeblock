@@ -25,7 +25,9 @@ const CardCreator = () => {
     }
 
     const deleteTask = (taskName) => {
-        setDeletedTasks([...deletedTasks, taskName])
+        if(deletedTasks.indexOf(taskName) === -1) {
+            setDeletedTasks([...deletedTasks, taskName])
+        }
     }
 
     const taskInput = (e) => {
