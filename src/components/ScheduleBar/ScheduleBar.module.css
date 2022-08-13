@@ -1,0 +1,36 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 1rem;
+    user-select: none;
+    position: relative;
+}
+
+.container:hover {
+    cursor: pointer;
+}
+
+.cursor {
+    position: absolute;
+    align-self: flex-start;
+    top: -10px;
+    z-index: 1;
+}
+
+.time_block {
+    display: flex;
+    align-items: center;
+    width: 2rem;
+    height: 12rem;
+    padding: 0.5rem 1.4rem 0;
+    margin: 0 0.1rem;
+}
+
+.text {
+    margin-bottom: 0;
+}
+
+.meridiem {
+    margin-bottom: 8.5rem;
+}

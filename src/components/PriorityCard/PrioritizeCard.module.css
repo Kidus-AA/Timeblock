@@ -1,7 +1,6 @@
 .container {
     min-width: 300px;
     height: fit-content;
-    /* height: 15rem; */
     flex: 1 0 auto;
 }
 
@@ -10,7 +9,7 @@
     flex-direction: row;
     flex-wrap: wrap;
     height: fit-content;
-    padding: 0.25rem 0 2rem;
+    padding: 0.25rem 0;
     overflow-x: scroll;
     overflow-y: scroll;
 }

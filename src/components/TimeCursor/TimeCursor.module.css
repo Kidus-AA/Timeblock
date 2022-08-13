@@ -1,0 +1,27 @@
+.container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* z-index: 1; */
+}
+
+.time_cursor {
+    position: absolute;
+    width: 2px;
+    height: 13rem;
+    /* height: 12rem; */
+    background-color: tomato;
+}
+
+.edge {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 5rem;
+    background-color: tomato;
+}
+
+.edge:last-child {
+    bottom: -13.15rem;
+}

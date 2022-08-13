@@ -2,13 +2,25 @@ import styles from './PrioritizeCard.module.css'
 import { Card } from 'react-bootstrap'
 import { useContext } from 'react'
 import { TaskList } from '../../context'
-import TodoCard from '../TodoCard'
+import PrioritizedTask from '../PrioritizedTask'
 
 const PrioritizeCard = (props) => {
-    const { deletedTasks, setDeletedTasks } = useContext(TaskList)
+    const { highPriority, setHighPriority, lowPriority, setLowPriority } = useContext(TaskList)
 
     const getTasks = () => {
-        return props.tasks.map((task, key) => <TodoCard key={key} todo={task} />)
+        return props.tasks.map((task, key) => {
+            if(task) {
+                return <PrioritizedTask key={key} todo={task} priority={props.priority} deleteTask={deleteTask}/>
+            }
+        })
+    }
+
+    const deleteTask = (taskName) => {
+        if(props.priority === 'High') {
+            setHighPriority(highPriority.filter(task => task !== taskName))
+        } else if(props.priority === 'Low') {
+            setLowPriority(lowPriority.filter(task => task !== taskName))
+        }
     }
 
     return (

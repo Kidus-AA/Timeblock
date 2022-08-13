@@ -12,40 +12,40 @@ const TodoCard = (props) => {
     const taskContain = useRef()
 
     const container = useContext(TaskListContainer)
-    const { highPriority, setHighPriority, lowPriority, setLowPriority } = useContext(TaskList)
+    const { tasks, setTasks, highPriority, setHighPriority, lowPriority, setLowPriority } = useContext(TaskList)
 
     const handleStop = (e) => {
         if(e.target instanceof HTMLImageElement) {
             handleDelete()
-        } else if(e.target instanceof HTMLInputElement) {} 
-          else {
+        } else if(e.target instanceof HTMLInputElement) {
+            handleClick()
+        } else {
             const windowWidth = window.innerWidth
 
             const highPriorityBox = document.getElementById("highBox").getBoundingClientRect()
+            const lowPriorityBox = document.getElementById("lowBox").getBoundingClientRect()
             const containerBox = container.current.getBoundingClientRect()
 
             if(windowWidth > 767) {
-                if((e.clientX / windowWidth) > 0.5) {
-                    if(e.clientY > highPriorityBox.bottom) {
-                        setLowPriority([...lowPriority, todoBox.current.innerText]) 
-                    } else {
-                        setHighPriority([...highPriority, todoBox.current.innerText]) 
-                    } 
-                    container.current.removeChild(taskContain.current)
+                if(e.clientY > highPriorityBox.bottom && e.clientY < lowPriorityBox.bottom) {
+                    setLowPriority([...lowPriority, todoBox.current.innerText]) 
+                    setTasks(tasks.filter(task => task !== todoBox.current.innerText))
+                } else if(e.clientY < lowPriorityBox.top && e.clientY > highPriorityBox.top) {
+                    setHighPriority([...highPriority, todoBox.current.innerText]) 
+                    setTasks(tasks.filter(task => task !== todoBox.current.innerText))
                 } else {
-                    container.current.removeChild(taskContain.current)
+                    taskContain.current.remove()
                     container.current.appendChild(taskContain.current)
                 }
             } else {
-                if(e.clientY > containerBox.bottom) {
-                    if(e.clientY > highPriorityBox.bottom) {
-                        setLowPriority([...lowPriority, todoBox.current.innerText]) 
-                    } else {
-                        setHighPriority([...highPriority, todoBox.current.innerText]) 
-                    } 
-                    container.current.removeChild(taskContain.current)
+                if(e.clientY > highPriorityBox.bottom && e.clientY < lowPriorityBox.bottom) {
+                    setLowPriority([...lowPriority, todoBox.current.innerText]) 
+                    setTasks(tasks.filter(task => task !== todoBox.current.innerText))
+                } else if(e.clientY < lowPriorityBox.top && e.clientY > highPriorityBox.top) {
+                    setHighPriority([...highPriority, todoBox.current.innerText]) 
+                    setTasks(tasks.filter(task => task !== todoBox.current.innerText))
                 } else {
-                    container.current.removeChild(taskContain.current)
+                    taskContain.current.remove()
                     container.current.appendChild(taskContain.current)
                 }
             }
@@ -60,10 +60,8 @@ const TodoCard = (props) => {
         const checked = boxChecked.current.style.textDecoration;
         if(!checked) {
             boxChecked.current.style.textDecoration = "line-through";
-            check.current.checked = true;
         } else {
             boxChecked.current.style.textDecoration = "";
-            check.current.checked = false;
         }
     }
 
@@ -75,10 +73,10 @@ const TodoCard = (props) => {
                 position={{x: 0, y: 0}}
             >
                     <div className={styles.container} ref={todoBox}>
-                        <Form.Check type="checkbox" ref={check} onClick={handleClick}/>
+                        <Form.Check type="checkbox" ref={check} />
                         <div ref={boxChecked} className={styles.todo}><h5>{props.todo}</h5></div>
                         <div className={styles.delete}>
-                            <img className={styles.test} src={closePNG} alt="Delete todo" width="20px"></img>
+                            <img className={styles.delete_undraggable} src={closePNG} alt="Delete todo" width="20px"></img>
                         </div>
                     </div>
             </Draggable>

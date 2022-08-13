@@ -7,33 +7,53 @@ import TodoCard from '../TodoCard'
 
 const CardCreator = () => {
     const [ newTask, setNewTask ] = useState()
-    const { tasks, setTasks, deletedTasks, setDeletedTasks } = useContext(TaskList)    // get all the tasks stored in the home page
+    const { tasks, setTasks } = useContext(TaskList)    // get all the tasks stored in the home page
     const listContainer = useRef()
 
     const getTasks = () => {
-        return tasks.map((task, key) => <TodoCard key={key} todo={task} deleteTask={deleteTask}/>)
+        return tasks.map((task, key) => {
+            if(task) {
+                return <TodoCard key={key} todo={task} deleteTask={deleteTask}/>
+            }
+        })
     }
 
     // add new tasks to the tasks within the home page
     const addTask = (e) => {
         e.preventDefault();
         if(newTask && newTask.length < 55) {
-            setTasks([...tasks, newTask])
-            setNewTask("")
+            setTasks([...tasks, capitalizeLetters(newTask)])
             e.target.reset()
         }
     }
 
-    const deleteTask = (taskName) => {
-        if(deletedTasks.indexOf(taskName) === -1) {
-            setDeletedTasks([...deletedTasks, taskName])
+    const capitalizeLetters = (word) => {
+        let capitalized = ""
+        let flag = true
+        for(const letter of word) {
+            if(letter === " ") {
+                capitalized += letter
+                flag = true
+            } else if(letter !== " " && flag) {
+                capitalized += letter.toUpperCase()
+                flag = false
+            } else {
+                capitalized += letter
+                flag = false
+            }
         }
+        return capitalized
+    }
+
+    const deleteTask = (taskName) => {
+        setTasks(tasks.filter(task => task !== taskName))
     }
 
     const taskInput = (e) => {
-        if(e.target.value.length < 55) {
+        if(e.target.value.length < 55 && e.target.value.trim().length > 0) {
             setNewTask(e.target.value)
         } else {
+            setNewTask("")
             // Show error
         }
     }
@@ -41,7 +61,7 @@ const CardCreator = () => {
     return (
         <TaskListContainer.Provider value={listContainer}>
             <Form onSubmit={addTask}>
-                <Card>
+                <Card className={styles.container}>
                     <Card.Body>
                         <Card.Title>Todo List</Card.Title>
                             <div ref={listContainer} className={styles.listContainer}>

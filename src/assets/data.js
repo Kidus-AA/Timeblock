@@ -1,0 +1,28 @@
+export default {
+    data: [
+        {id: "t7", start: "7", end: "8", meridiem: "am"},
+        {id: "t8", start: "8", end: "9", meridiem: "am"},
+        {id: "t9", start: "9", end: "10", meridiem: "am"},
+        {id: "t10", start: "10", end: "11", meridiem: "am"},
+        {id: "t11", start: "11", end: "12", meridiem: "am"},
+        {id: "t12", start: "12", end: "1", meridiem: "pm"},
+        {id: "t13", start: "1", end: "2", meridiem: "pm"},
+        {id: "t14", start: "2", end: "3", meridiem: "pm"},
+        {id: "t15", start: "3", end: "4", meridiem: "pm"},
+        {id: "t16", start: "4", end: "5", meridiem: "pm"},
+        {id: "t17", start: "5", end: "6", meridiem: "pm"},
+        {id: "t18", start: "6", end: "7", meridiem: "pm"},
+        {id: "t19", start: "7", end: "8", meridiem: "pm"},
+        {id: "t20", start: "8", end: "9", meridiem: "pm"},
+        {id: "t21", start: "9", end: "10", meridiem: "pm"},
+        {id: "t22", start: "10", end: "11", meridiem: "pm"},
+        {id: "t23", start: "11", end: "12", meridiem: "pm"},
+        {id: "t0", start: "12", end: "1", meridiem: "am"},
+        {id: "t1", start: "1", end: "2", meridiem: "am"},
+        {id: "t2", start: "2", end: "3", meridiem: "am"},
+        {id: "t3", start: "3", end: "4", meridiem: "am"},
+        {id: "t4", start: "4", end: "5", meridiem: "am"},
+        {id: "t5", start: "5", end: "6", meridiem: "am"},
+        {id: "t6", start: "6", end: "7", meridiem: "am"},
+    ]
+}
