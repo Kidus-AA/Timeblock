@@ -1,4 +1,4 @@
-import { useContext, useState, useRef, useEffect, useReducer } from 'react'
+import { useContext, useState, useRef } from 'react'
 import styles from './ScheduleBar.module.css'
 import { Card, Popover, OverlayTrigger } from 'react-bootstrap'
 import { TaskSchedule } from '../../context'
@@ -9,20 +9,6 @@ const ScheduleBar = (props) => {
     const { scheduledTask } = useContext(TaskSchedule)
     const scheduleContainer = useRef()
     const timeCursor = useRef()
-
-    const reducer = (state, action) => {
-        return {time: state.time + 0.005}
-    }
-    const [ state, dispatch ] = useReducer(reducer, {time: 0})
-
-    useEffect(() => {
-        setTimeout(() => {
-            dispatch()
-            if(timeCursor.current) {
-                timeCursor.current.style = `transform: translate(${state.time}px, 0px)`
-            }
-        }, 1000)
-    })
 
     const popover = (
         <Popover id="popover-basic">

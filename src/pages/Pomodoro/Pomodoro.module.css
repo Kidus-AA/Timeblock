@@ -1,0 +1,39 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(255, 0, 0, 0.8);
+    z-index: 4;
+}
+
+.delete {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+}
+
+.delete:hover, 
+.delete:active {
+    cursor: pointer
+}
+
+.delete_undraggable {
+    -webkit-user-drag: none;
+    user-select: none;
+}
+
+.content_container {
+    width: 45rem;
+}
+
+.tab_container {
+    display: flex;
+    justify-content: center;
+}

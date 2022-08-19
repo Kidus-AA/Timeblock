@@ -7,21 +7,18 @@ import Time from '../../assets/data'
 const Schedule = () => {
     const [ data, setData ] = useState(Time.data)
     const [ display, setDisplay ] = useState()
-    const [ trigger, setTrigger ] = useState()
     
     const reducer = (state, action) => {
         return {time: state.time + 0.5}
     }
     const [ state, dispatch ] = useReducer(reducer, {time: 0})
 
-    // ISSUE: This is not rendering each time
     useEffect(() => {
         const date = new Date()
         setTimeout(() => {
             dispatch()
         }, (59 - date.getMinutes()) * 60000)
         setDisplay(generateBars())
-        console.log(`Next trigger in ${(59 - date.getMinutes()) * 60000}`)
     }, [state.time])
 
     const generateBars = () => {

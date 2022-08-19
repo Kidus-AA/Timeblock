@@ -14,6 +14,8 @@ const CardCreator = () => {
         return tasks.map((task, key) => {
             if(task) {
                 return <TodoCard key={key} todo={task} deleteTask={deleteTask}/>
+            } else {
+                return ""
             }
         })
     }

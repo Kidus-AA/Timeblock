@@ -13,18 +13,17 @@ function App() {
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto">
-              {/* <Nav.Link href="#home">Home</Nav.Link>
-              <Nav.Link href="#history">History</Nav.Link> */}
+              {/* <Nav.Link href="#home">Contact</Nav.Link> */}
+              {/* <Nav.Link href="#history">History</Nav.Link> */}
             </Nav>
             <Nav>
-              {/* <Nav.Link href="#deets">Login</Nav.Link> */}
+              <Nav.Link href="#deets">Contact</Nav.Link>
             </Nav>
           </Navbar.Collapse>
           </Container>
         </Navbar>
-        <div id="barrier"></div>
+        {/* <div id="barrier"></div> */}
       </div>
-      
       <Home />
     </div>
   );
